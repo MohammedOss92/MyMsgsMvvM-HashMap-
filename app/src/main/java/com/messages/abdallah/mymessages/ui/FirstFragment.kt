@@ -1,23 +1,19 @@
 package com.messages.abdallah.mymessages.ui
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.messages.abdallah.mymessages.ViewModel.MsgsTypesViewModel
 import com.messages.abdallah.mymessages.adapter.MsgsTypes_Adapter
 import com.messages.abdallah.mymessages.api.ApiService
-import com.messages.abdallah.mymessages.api.ApiService.Companion.retrofitService
 
 import com.messages.abdallah.mymessages.databinding.FragmentFirstBinding
-import com.messages.abdallah.mymessages.models.MsgsTypesModel
 import com.messages.abdallah.mymessages.repository.MsgsTypesRepo
 
 class FirstFragment : Fragment() {
@@ -51,9 +47,9 @@ class FirstFragment : Fragment() {
 
     private fun adapterOnClick(){
         //لاحظ الفانكشن انها بترمي الid
-        msgstypesAdapter.onItemClick = {
+        msgstypesAdapter.onItemClick = {id, MsgTypes ->
 //            Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_LONG).show()
-            val direction = FirstFragmentDirections.actionFirsFragmentToSecondFragment(it)
+            val direction = FirstFragmentDirections.actionFirsFragmentToSecondFragment(id, MsgTypes)
             findNavController().navigate(direction)
         }
     }

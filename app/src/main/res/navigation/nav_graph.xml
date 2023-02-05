@@ -22,5 +22,8 @@
         <argument
             android:name="id"
             app:argType="integer" />
+        <argument
+            android:name="msgType"
+            app:argType="string" />
     </fragment>
 </navigation>
