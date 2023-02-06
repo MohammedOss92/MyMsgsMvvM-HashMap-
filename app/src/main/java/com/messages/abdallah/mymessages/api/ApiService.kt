@@ -1,16 +1,24 @@
 package com.messages.abdallah.mymessages.api
 
+import com.messages.abdallah.mymessages.models.MsgsResponse
 import com.messages.abdallah.mymessages.models.MsgsTypesResponse
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 interface ApiService {
 
     @GET("msgtypes_api")
     //sweilem edit
     suspend fun getMsgsTypes_Ser(): Response<MsgsTypesResponse>
+
+    @GET("msgsapi")
+    suspend fun getMsgs_Ser(
+        @Query("ID_Type_id")
+        ID_Type_id:Int
+    ):Response<MsgsResponse>
 
 
 

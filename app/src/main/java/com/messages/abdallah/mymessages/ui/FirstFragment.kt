@@ -63,8 +63,8 @@ class FirstFragment : Fragment() {
 
 
 
-            viewModel.responseMsgsTypes.observe(viewLifecycleOwner) { listTvShows ->
-                msgstypesAdapter.msgsTypesModel = listTvShows
+            viewModel.responseMsgsTypes.observe(viewLifecycleOwner) { listShows ->
+                msgstypesAdapter.msgsTypesModel = listShows
                 binding.rcMsgTypes.adapter = msgstypesAdapter
             }
     }
