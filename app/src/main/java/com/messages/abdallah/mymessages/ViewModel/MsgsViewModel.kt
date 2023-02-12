@@ -30,6 +30,7 @@ class MsgsViewModel:ViewModel() {
 
                 if (response.isSuccessful) {
                     _response.postValue(response.body()?.results)
+                    Log.i("TestRoom", "getAllMsgs: posts ${response.body()?.results}")
                     // msgsTypesRepo.insertPosts(response.body()?.results)
                 } else {
                     Log.i("TestRoom", "getAllMsgs: data corrupted")

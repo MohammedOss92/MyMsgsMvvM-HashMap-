@@ -10,13 +10,15 @@ import com.messages.abdallah.mymessages.models.MsgsTypesModel
 
 class MsgsTypes_Adapter : RecyclerView.Adapter<MsgsTypes_Adapter.MyViewHolder>() {
 
-    var onItemClick: ((Int,String) -> Unit)? = null
+//    var onItemClick: ((Int,String) -> Unit)? = null
+    var onItemClick: ((Int) -> Unit)? = null
 
     inner class MyViewHolder(val binding : MsgstypeslayoutBinding) : RecyclerView.ViewHolder(binding.root){
 
         init {
             binding.root.setOnClickListener {
-                onItemClick?.invoke(msgsTypesModel[layoutPosition].id,msgsTypesModel[layoutPosition].MsgTypes!!)
+//                onItemClick?.invoke(msgsTypesModel[layoutPosition].id,msgsTypesModel[layoutPosition].MsgTypes!!)
+                onItemClick?.invoke(msgsTypesModel[layoutPosition].id)
 
             }
         }

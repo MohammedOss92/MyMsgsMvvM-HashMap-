@@ -30,7 +30,7 @@ class SecondFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         argsId = SecondFragmentArgs.fromBundle(requireArguments()).id
-        MsgTypes_name = SecondFragmentArgs.fromBundle(requireArguments()).msgType
+//        MsgTypes_name = SecondFragmentArgs.fromBundle(requireArguments()).msgType
     }
 
     override fun onCreateView(
