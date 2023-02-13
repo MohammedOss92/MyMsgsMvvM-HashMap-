@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import com.messages.abdallah.mymessages.ViewModel.MsgsTypesViewModel
 import com.messages.abdallah.mymessages.adapter.MsgsTypes_Adapter
@@ -13,6 +14,7 @@ import com.messages.abdallah.mymessages.api.ApiService
 
 import com.messages.abdallah.mymessages.databinding.FragmentFirstBinding
 import com.messages.abdallah.mymessages.repository.MsgsTypesRepo
+import kotlinx.coroutines.launch
 
 class FirstFragment : Fragment() {
     private var _binding : FragmentFirstBinding?=null
@@ -54,7 +56,7 @@ class FirstFragment : Fragment() {
         }
     }
 
-    private fun setUpRv() {
+    private fun setUpRv() = viewModel.viewModelScope.launch {
 
 //        binding.rcMsgTypes.apply {
 //            adapter = msgstypesAdapter
@@ -63,10 +65,11 @@ class FirstFragment : Fragment() {
 
 
 
-            viewModel.responseMsgsTypes.observe(viewLifecycleOwner) { listShows ->
-                msgstypesAdapter.msgsTypesModel = listShows
-                binding.rcMsgTypes.adapter = msgstypesAdapter
-            }
+        viewModel.getAllMsgsTypes().observe(viewLifecycleOwner) { listShows ->
+            msgstypesAdapter.msgsTypesModel = listShows
+            binding.rcMsgTypes.adapter = msgstypesAdapter
+        }
+
     }
 
     override fun onDestroyView() {

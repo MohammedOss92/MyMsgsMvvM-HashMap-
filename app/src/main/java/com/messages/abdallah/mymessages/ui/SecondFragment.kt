@@ -7,11 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.viewModelScope
 import com.messages.abdallah.mymessages.ViewModel.MsgsViewModel
 import com.messages.abdallah.mymessages.adapter.Msgs_Adapter
 import com.messages.abdallah.mymessages.api.ApiService
 import com.messages.abdallah.mymessages.databinding.FragmentSecondBinding
 import com.messages.abdallah.mymessages.repository.MsgsRepo
+import kotlinx.coroutines.launch
 
 
 class SecondFragment : Fragment() {
@@ -56,7 +58,7 @@ class SecondFragment : Fragment() {
     }
 
 
-    private fun setUpRv() {
+    private  fun setUpRv() = viewModel.viewModelScope.launch {
 
 //        binding.rcMsgTypes.apply {
 //            adapter = msgstypesAdapter
@@ -64,8 +66,7 @@ class SecondFragment : Fragment() {
 //        }
 
 
-
-        viewModel.responseMsgs.observe(viewLifecycleOwner) { listShows ->
+        viewModel.getAllMsgs(argsId).observe(viewLifecycleOwner) { listShows ->
             msgsAdapter.msgsModel = listShows
             binding.rcMsgs.adapter = msgsAdapter
         }

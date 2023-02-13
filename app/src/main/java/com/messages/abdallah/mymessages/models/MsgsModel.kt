@@ -1,10 +1,12 @@
 package com.messages.abdallah.mymessages.models
 
+import androidx.annotation.NonNull
 import com.google.gson.annotations.SerializedName
 
 data class MsgsModel(
 
     @SerializedName("id")
+    @NonNull
     var id : Int = 0,
 
     @SerializedName("MessageName")
