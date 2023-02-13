@@ -9,12 +9,14 @@ import com.messages.abdallah.mymessages.api.ApiService
 import com.messages.abdallah.mymessages.models.MsgsModel
 import com.messages.abdallah.mymessages.models.MsgsTypesModel
 import com.messages.abdallah.mymessages.repository.MsgsTypesRepo
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-class MsgsTypesViewModel : ViewModel() {
+class MsgsTypesViewModel constructor(private val msgsTypesRepo: MsgsTypesRepo)  : ViewModel() {
 
     private val retrofitService = ApiService.provideRetrofitInstance()
-    private val msgsTypesRepo = MsgsTypesRepo(retrofitService)
+//     msgsTypesRepo = MsgsTypesRepo(retrofitService)
 
     private val _response = MutableLiveData<List<MsgsTypesModel>>()
 //    val responseMsgsTypes : LiveData<List<MsgsTypesModel>>
@@ -32,7 +34,7 @@ class MsgsTypesViewModel : ViewModel() {
                 _response.postValue(response.body()?.results)
                 Log.i("TestRoom", "getAllMsgsTypes: posts ${response.body()?.results}")
                 //here get data from api so will insert it to local database
-                // msgsTypesRepo.insertPosts(response.body()?.results)
+                msgsTypesRepo.insertPosts(response.body()?.results)
             } else {
                 Log.i("TestRoom", "getAllMsgsTypes: data corrupted")
                 Log.d("tag", "getAll Error: ${response.code()}")
@@ -41,4 +43,26 @@ class MsgsTypesViewModel : ViewModel() {
         return _response
     }
 
-}
+    fun getPostsFromRoom(){
+        viewModelScope.launch {
+            val response = msgsTypesRepo.getLocalPosts()
+            withContext(Dispatchers.Main) {
+                if (response.isEmpty()) {
+                    Log.i("TestRoom", "getPostsFromRoom: will cal api")
+                    //no data in database so will call data from API
+                    getAllMsgsTypes()
+                } else {
+                    Log.i("TestRoom", "getPostsFromRoom: get from Room")
+                    _response.postValue(response)
+                }
+            }
+        }
+        }
+
+
+    suspend fun refreshPosts() {
+        getAllMsgsTypes()
+    }
+
+    }
+

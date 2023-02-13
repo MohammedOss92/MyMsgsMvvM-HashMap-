@@ -1,19 +1,22 @@
 package com.messages.abdallah.mymessages.ui
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
+import com.messages.abdallah.mymessages.R
 import com.messages.abdallah.mymessages.ViewModel.MsgsTypesViewModel
 import com.messages.abdallah.mymessages.adapter.MsgsTypes_Adapter
 import com.messages.abdallah.mymessages.api.ApiService
 
 import com.messages.abdallah.mymessages.databinding.FragmentFirstBinding
+import com.messages.abdallah.mymessages.db.LocaleSource
 import com.messages.abdallah.mymessages.repository.MsgsTypesRepo
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.GlobalScope.coroutineContext
 import kotlinx.coroutines.launch
 
 class FirstFragment : Fragment() {
@@ -24,7 +27,7 @@ class FirstFragment : Fragment() {
     private val msgstypesAdapter by lazy {  MsgsTypes_Adapter() }
 
     private val retrofitService = ApiService.provideRetrofitInstance()
-    private val mainRepository = MsgsTypesRepo(retrofitService)//, LocaleSource(this))
+    private val mainRepository = MsgsTypesRepo(retrofitService, LocaleSource(requireContext()))
     private val viewModel: MsgsTypesViewModel by viewModels()
 
     override fun onCreateView(
@@ -70,6 +73,24 @@ class FirstFragment : Fragment() {
             binding.rcMsgTypes.adapter = msgstypesAdapter
         }
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        val inflater = inflater
+        inflater.inflate(R.menu.first_frag_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.refresh -> {
+                GlobalScope.launch(coroutineContext){
+
+                    viewModel.refreshPosts()
+                }
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     override fun onDestroyView() {
