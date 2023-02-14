@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import com.messages.abdallah.mymessages.R
 import com.messages.abdallah.mymessages.ViewModel.MsgsTypesViewModel
+import com.messages.abdallah.mymessages.ViewModel.MyViewModelFactory
 import com.messages.abdallah.mymessages.adapter.MsgsTypes_Adapter
 import com.messages.abdallah.mymessages.api.ApiService
 
@@ -27,8 +28,12 @@ class FirstFragment : Fragment() {
     private val msgstypesAdapter by lazy {  MsgsTypes_Adapter() }
 
     private val retrofitService = ApiService.provideRetrofitInstance()
-    private val mainRepository = MsgsTypesRepo(retrofitService, LocaleSource(requireContext()))
-    private val viewModel: MsgsTypesViewModel by viewModels()
+
+    private val mainRepository by lazy {  MsgsTypesRepo(retrofitService, LocaleSource(requireContext())) }
+
+    private val viewModel: MsgsTypesViewModel by viewModels{
+        MyViewModelFactory(mainRepository)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -68,10 +73,21 @@ class FirstFragment : Fragment() {
 
 
 
-        viewModel.getAllMsgsTypes().observe(viewLifecycleOwner) { listShows ->
-            msgstypesAdapter.msgsTypesModel = listShows
-            binding.rcMsgTypes.adapter = msgstypesAdapter
+//        viewModel.getAllMsgsTypes().observe(viewLifecycleOwner) { listShows ->
+//            msgstypesAdapter.msgsTypesModel = listShows
+//            binding.rcMsgTypes.adapter = msgstypesAdapter
+//        }
+
+        viewModel.responseMsgsTypes.observe(requireActivity()) { listTvShows ->
+            msgstypesAdapter.msgsTypesModel = listTvShows
         }
+
+//        viewModel.getAllMsgsTypes().observe(viewLifecycleOwner) { listShows ->
+//            msgstypesAdapter.msgsTypesModel = listShows
+//            binding.rcMsgTypes.adapter = msgstypesAdapter
+//        }
+//
+
 
     }
 

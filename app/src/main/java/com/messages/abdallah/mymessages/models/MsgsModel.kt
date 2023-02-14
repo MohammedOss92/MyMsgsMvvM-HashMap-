@@ -24,7 +24,7 @@ data class MsgsModel(
     @SerializedName("new_msgs")
     var new_msgs : Int,
 
-    @ColumnInfo("ID_Type_id")
+    @ColumnInfo("ID_Type_id", index = true)
     @SerializedName("ID_Type_id")
     var ID_Type_id : Int
 )

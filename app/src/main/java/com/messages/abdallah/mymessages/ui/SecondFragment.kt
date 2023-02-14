@@ -9,10 +9,14 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.viewModelScope
 import com.messages.abdallah.mymessages.ViewModel.MsgsViewModel
+import com.messages.abdallah.mymessages.ViewModel.MyViewModelFactory
+import com.messages.abdallah.mymessages.ViewModel.ViewModelFactory
 import com.messages.abdallah.mymessages.adapter.Msgs_Adapter
 import com.messages.abdallah.mymessages.api.ApiService
 import com.messages.abdallah.mymessages.databinding.FragmentSecondBinding
+import com.messages.abdallah.mymessages.db.LocaleSource
 import com.messages.abdallah.mymessages.repository.MsgsRepo
+import com.messages.abdallah.mymessages.repository.MsgsTypesRepo
 import kotlinx.coroutines.launch
 
 
@@ -25,9 +29,14 @@ class SecondFragment : Fragment() {
 
 
     private val msgsAdapter by lazy { Msgs_Adapter() }
+
     private val retrofitService = ApiService.provideRetrofitInstance()
-    private val mainRepository = MsgsRepo(retrofitService)//, LocaleSource(this))
-    private val viewModel: MsgsViewModel by viewModels()
+
+    private val mainRepository by lazy {  MsgsRepo(retrofitService, LocaleSource(requireContext())) }
+
+    private val viewModel: MsgsViewModel by viewModels{
+        ViewModelFactory(mainRepository)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

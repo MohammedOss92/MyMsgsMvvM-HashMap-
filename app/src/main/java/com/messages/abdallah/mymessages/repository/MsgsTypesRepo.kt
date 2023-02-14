@@ -8,7 +8,7 @@ class MsgsTypesRepo constructor(private val apiService: ApiService,private val l
 
     suspend fun getMsgsTypes_Ser() = apiService.getMsgsTypes_Ser()
 
-    suspend fun getLocalPosts() = localeSource.getLocalPosts()
+    suspend fun getMsgsTypes_Dao() = localeSource.getMsgsTypes_Dao()
 
     suspend fun insertPosts (posts:List<MsgsTypesModel>?){
         if(!posts.isNullOrEmpty()){

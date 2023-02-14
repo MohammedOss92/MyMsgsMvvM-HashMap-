@@ -19,8 +19,8 @@ class MsgsTypesViewModel constructor(private val msgsTypesRepo: MsgsTypesRepo)  
 //     msgsTypesRepo = MsgsTypesRepo(retrofitService)
 
     private val _response = MutableLiveData<List<MsgsTypesModel>>()
-//    val responseMsgsTypes : LiveData<List<MsgsTypesModel>>
-//    get() =_response
+    val responseMsgsTypes : LiveData<List<MsgsTypesModel>>
+    get() =_response
 
 
     suspend fun getAllMsgsTypes() : MutableLiveData<List<MsgsTypesModel>> {
@@ -45,7 +45,7 @@ class MsgsTypesViewModel constructor(private val msgsTypesRepo: MsgsTypesRepo)  
 
     fun getPostsFromRoom(){
         viewModelScope.launch {
-            val response = msgsTypesRepo.getLocalPosts()
+            val response = msgsTypesRepo.getMsgsTypes_Dao()
             withContext(Dispatchers.Main) {
                 if (response.isEmpty()) {
                     Log.i("TestRoom", "getPostsFromRoom: will cal api")

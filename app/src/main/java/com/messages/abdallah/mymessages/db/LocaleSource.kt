@@ -3,13 +3,14 @@ package com.messages.abdallah.mymessages.db
 import android.content.Context
 import com.messages.abdallah.mymessages.db.Dao.MsgsDao
 import com.messages.abdallah.mymessages.db.Dao.MsgsTypesDao
+import com.messages.abdallah.mymessages.models.MsgsModel
 import com.messages.abdallah.mymessages.models.MsgsTypesModel
 
 class LocaleSource(context: Context) {
 
     private var TypesDao: MsgsTypesDao?
     private var Msgs_Dao: MsgsDao?
-
+    var ID_Type_id: Int?=null
 
 
     init {
@@ -27,13 +28,23 @@ class LocaleSource(context: Context) {
         }
     }
 
-    suspend fun getLocalPosts(): List<MsgsTypesModel> {
-        return TypesDao?.getLocalPosts()!!
+    suspend fun getMsgsTypes_Dao(): List<MsgsTypesModel> {
+        return TypesDao?.getMsgsTypes_Dao()!!
+    }
+
+    suspend fun getMsgs_Dao(): List<MsgsModel> {
+        return Msgs_Dao?.getAllMsgsDao(ID_Type_id!!)!!
     }
 
     suspend fun insertPosts(posts: List<MsgsTypesModel>) {
         TypesDao?.insertPosts(posts)!!
     }
+
+    suspend fun insert_msgs(msgs: List<MsgsModel>) {
+        Msgs_Dao?.insert_msgs(msgs)!!
+    }
+
+
 
     suspend fun deletePosts() {
         TypesDao?.deleteALlPosts()

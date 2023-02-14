@@ -26,8 +26,10 @@ interface MsgsTypesDao {
     @Delete
     suspend fun delete(note: MsgsTypesModel)
 
+    /************************/
+
     @Query("SELECT * FROM msg_types_table")
-    suspend fun getLocalPosts():  List<MsgsTypesModel>
+    suspend fun getMsgsTypes_Dao():  List<MsgsTypesModel>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertPosts(posts: List<MsgsTypesModel>)
