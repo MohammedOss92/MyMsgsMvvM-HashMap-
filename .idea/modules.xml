@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/MyApplication2.iml" filepath="$PROJECT_DIR$/MyApplication2.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/MyApplication2.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/MyApplication2.app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/MyApplication2.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/MyApplication2.app.androidTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/MyApplication2.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/MyApplication2.app.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/MyApplication2.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/MyApplication2.app.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MyMsgsNew2NavComponentMvvM.iml" filepath="$PROJECT_DIR$/.idea/modules/MyMsgsNew2NavComponentMvvM.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/MyMsgsNew2NavComponentMvvM.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/MyMsgsNew2NavComponentMvvM.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/MyMsgsNew2NavComponentMvvM.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/MyMsgsNew2NavComponentMvvM.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/MyMsgsNew2NavComponentMvvM.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/MyMsgsNew2NavComponentMvvM.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/MyMsgsNew2NavComponentMvvM.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/MyMsgsNew2NavComponentMvvM.app.unitTest.iml" />
     </modules>
   </component>
 </project>

@@ -99,10 +99,7 @@ class FirstFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.refresh -> {
-                GlobalScope.launch(coroutineContext){
-
                     viewModel.refreshPosts()
-                }
                 true
             }
             else -> super.onOptionsItemSelected(item)

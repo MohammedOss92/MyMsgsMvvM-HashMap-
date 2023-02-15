@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.refresh -> {
-                GlobalScope.launch { viewModel.refreshPosts() }
+                viewModel.refreshPosts()
 
                 true
             }

@@ -60,8 +60,10 @@ class MsgsTypesViewModel constructor(private val msgsTypesRepo: MsgsTypesRepo)  
         }
 
 
-    suspend fun refreshPosts() {
-        getAllMsgsTypes()
+    fun refreshPosts() {
+       viewModelScope.launch {
+           getAllMsgsTypes()
+       }
     }
 
     }
