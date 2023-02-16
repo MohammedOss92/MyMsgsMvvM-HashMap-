@@ -42,6 +42,8 @@ class SecondFragment : Fragment() {
         super.onCreate(savedInstanceState)
         argsId = SecondFragmentArgs.fromBundle(requireArguments()).id
 //        MsgTypes_name = SecondFragmentArgs.fromBundle(requireArguments()).msgType
+        (activity as MainActivity).fragment = 2
+       // (activity as MainActivity).id = argsId
     }
 
     override fun onCreateView(
@@ -75,7 +77,7 @@ class SecondFragment : Fragment() {
 //        }
 
 
-        viewModel.getAllMsgs(argsId).observe(viewLifecycleOwner) { listShows ->
+        viewModel.getMsgsFromRoom_by_id(argsId,requireContext()).observe(viewLifecycleOwner) { listShows ->
             msgsAdapter.msgsModel = listShows
             binding.rcMsgs.adapter = msgsAdapter
         }

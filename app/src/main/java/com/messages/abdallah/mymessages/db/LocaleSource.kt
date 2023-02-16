@@ -32,8 +32,8 @@ class LocaleSource(context: Context) {
         return TypesDao?.getMsgsTypes_Dao()!!
     }
 
-    suspend fun getMsgs_Dao(): List<MsgsModel> {
-        return Msgs_Dao?.getAllMsgsDao(ID_Type_id!!)!!
+    suspend fun getMsgs_Dao(id:Int): List<MsgsModel> {
+        return Msgs_Dao?.getAllMsgsDao(id)!!
     }
 
     suspend fun insertPosts(posts: List<MsgsTypesModel>) {
