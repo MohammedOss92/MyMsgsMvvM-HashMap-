@@ -78,17 +78,6 @@ class FirstFragment : Fragment() {
 
     private fun setUpRv() = viewModel.viewModelScope.launch {
 
-//        binding.rcMsgTypes.apply {
-//            adapter = msgstypesAdapter
-//            setHasFixedSize(true)
-//        }
-
-
-
-//        viewModel.getAllMsgsTypes().observe(viewLifecycleOwner) { listShows ->
-//            msgstypesAdapter.msgsTypesModel = listShows
-//            binding.rcMsgTypes.adapter = msgstypesAdapter
-//        }
 
         viewModel.getPostsFromRoom(requireContext() as MainActivity).observe(requireActivity()) { listTvShows ->
        //     Log.e("tessst",listTvShows.size.toString()+"  adapter")
@@ -99,33 +88,11 @@ class FirstFragment : Fragment() {
 
         }
 
-//        viewModel.getAllMsgsTypes().observe(viewLifecycleOwner) { listShows ->
-//            msgstypesAdapter.msgsTypesModel = listShows
-//            binding.rcMsgTypes.adapter = msgstypesAdapter
-//        }
-//
-
 
     }
 
-    /*
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        val inflater = inflater
-        inflater.inflate(R.menu.first_frag_menu, menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.refresh -> {
-                    viewModel.refreshPosts()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
 
 
-     */
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

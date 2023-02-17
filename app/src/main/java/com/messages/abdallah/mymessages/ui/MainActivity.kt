@@ -60,9 +60,6 @@ class MainActivity : AppCompatActivity() {
                 MsgsViewModel::class.java
             )
 
-        // val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-
-        //  val navController = navHostFragment.navController
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -118,20 +115,5 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        return when (item.itemId) {
-//            R.id.refresh -> {
-//                GlobalScope.launch(GlobalScope.coroutineContext) {
-//
-//                    viewModel.refreshPosts()
-//                    true
-//                }
-//
-//                else -> super.onOptionsItemSelected(item)
-//            }
-//        }
-//    }
+
 }

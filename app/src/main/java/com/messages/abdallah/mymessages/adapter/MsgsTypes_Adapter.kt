@@ -54,6 +54,9 @@ class MsgsTypes_Adapter : RecyclerView.Adapter<MsgsTypes_Adapter.MyViewHolder>()
         holder.binding.apply {
             name.text=current_msgsTypesModel.MsgTypes
             newmsg.text = current_msgsTypesModel.new_msg.toString()
+            tvCounter.text = current_msgsTypesModel.counter.toString()
+
+
         }
 
 

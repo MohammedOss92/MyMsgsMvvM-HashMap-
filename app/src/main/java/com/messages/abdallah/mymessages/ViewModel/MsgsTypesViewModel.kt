@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.messages.abdallah.mymessages.api.ApiService
 import com.messages.abdallah.mymessages.models.MsgsModel
+import com.messages.abdallah.mymessages.models.MsgsTypeWithCount
 import com.messages.abdallah.mymessages.models.MsgsTypesModel
 import com.messages.abdallah.mymessages.repository.MsgsRepo
 import com.messages.abdallah.mymessages.repository.MsgsTypesRepo
@@ -29,12 +30,16 @@ class MsgsTypesViewModel constructor(
     private val retrofitService = ApiService.provideRetrofitInstance()
 //     msgsTypesRepo = MsgsTypesRepo(retrofitService)
 
-    private val _response = MutableLiveData<List<MsgsTypesModel>>()
-    val responseMsgsTypes: LiveData<List<MsgsTypesModel>>
+    private val _response = MutableLiveData<List<MsgsTypeWithCount>>()
+    val responseMsgsTypes: LiveData<List<MsgsTypeWithCount>>
         get() = _response
 
+    private val _responses = MutableLiveData<List<MsgsTypesModel>>()
+    val responseMsgsTypess: LiveData<List<MsgsTypesModel>>
+        get() = _responses
 
-    suspend fun getAllMsgsTypes(context: MainActivity): MutableLiveData<List<MsgsTypesModel>> {
+
+    suspend fun getAllMsgsTypes(context: MainActivity): MutableLiveData<List<MsgsTypeWithCount>> {
 
         msgsTypesRepo.getMsgsTypes_Ser().let { response ->
             Log.d("sww", "dfrr")
@@ -43,7 +48,7 @@ class MsgsTypesViewModel constructor(
                 // sweilem edit
 
                 Log.i("TestRoom", "getAllMsgsTypes: data returned successful")
-                _response.postValue(response.body()?.results)
+                _responses.postValue(response.body()?.results)
                 Log.i("TestRoom", "getAllMsgsTypes: posts ${response.body()?.results}")
                 //here get data from api so will insert it to local database
                 msgsTypesRepo.insertPosts(response.body()?.results)
@@ -64,7 +69,7 @@ class MsgsTypesViewModel constructor(
         return _response
     }
 
-    fun getPostsFromRoom(context: MainActivity): MutableLiveData<List<MsgsTypesModel>> {
+    fun getPostsFromRoom(context: MainActivity): MutableLiveData<List<MsgsTypeWithCount>> {
         viewModelScope.launch {
             val response = msgsTypesRepo.getMsgsTypes_Dao()
             withContext(Dispatchers.Main) {

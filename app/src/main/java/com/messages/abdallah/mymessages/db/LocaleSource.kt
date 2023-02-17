@@ -4,6 +4,7 @@ import android.content.Context
 import com.messages.abdallah.mymessages.db.Dao.MsgsDao
 import com.messages.abdallah.mymessages.db.Dao.MsgsTypesDao
 import com.messages.abdallah.mymessages.models.MsgsModel
+import com.messages.abdallah.mymessages.models.MsgsTypeWithCount
 import com.messages.abdallah.mymessages.models.MsgsTypesModel
 
 class LocaleSource(context: Context) {
@@ -28,7 +29,7 @@ class LocaleSource(context: Context) {
         }
     }
 
-    suspend fun getMsgsTypes_Dao(): List<MsgsTypesModel> {
+    suspend fun getMsgsTypes_Dao(): List<MsgsTypeWithCount> {
         return TypesDao?.getMsgsTypes_Dao()!!
     }
 
