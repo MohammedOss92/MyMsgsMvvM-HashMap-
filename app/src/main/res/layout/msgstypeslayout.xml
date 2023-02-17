@@ -7,120 +7,120 @@
     android:id="@+id/aa">
 
 
-<!--        <FrameLayout-->
-<!--            xmlns:android="http://schemas.android.com/apk/res/android"-->
+        <FrameLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:descendantFocusability="beforeDescendants"
+            tools:ignore="MissingConstraints">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="15dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:paddingRight="15dp"
+                android:background="@drawable/card_background_selector"
+                android:descendantFocusability="afterDescendants">
+
+
+                <TextView
+                    android:layout_width="292dp"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Large Text"
+                    android:id="@+id/tvTitle"
+                    android:gravity="center"
+                    android:textSize="25sp" />
+
+                <View
+                    android:id="@+id/view1"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@drawable/shape" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp"
+                    android:paddingRight="15dp">
+
+                    <TextView
+                        android:id="@+id/tvCounter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="Small Text"
+                        android:gravity="right"
+                        android:textSize="25sp"
+                        android:layout_alignBottom="@+id/new_Msg"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true" />
+
+                    <ImageView
+                        android:id="@+id/new_Msga"
+                        android:layout_width="30dp"
+                        android:layout_height="28dp"
+                        android:src="@mipmap/new_msg"
+                        android:layout_gravity="right"
+                        android:visibility="gone" />
+
+                </RelativeLayout>
+            </LinearLayout>
+
+
+
+        </FrameLayout>
+
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:orientation="vertical">-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/name"-->
 <!--            android:layout_width="match_parent"-->
 <!--            android:layout_height="wrap_content"-->
-<!--            android:paddingLeft="15dp"-->
-<!--            android:paddingRight="15dp"-->
-<!--            android:descendantFocusability="beforeDescendants"-->
-<!--            tools:ignore="MissingConstraints">-->
 
-<!--            <LinearLayout-->
-<!--                android:orientation="vertical"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:paddingLeft="15dp"-->
-<!--                android:paddingTop="15dp"-->
-<!--                android:paddingBottom="15dp"-->
-<!--                android:paddingRight="15dp"-->
-<!--                android:background="@drawable/card_background_selector"-->
-<!--                android:descendantFocusability="afterDescendants">-->
+<!--            android:layout_marginTop="4dp"-->
+<!--            android:fontFamily="sans-serif-black"-->
+<!--            android:text="TextView"-->
+<!--            android:textAlignment="center"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
 
-
-<!--                <TextView-->
-<!--                    android:layout_width="292dp"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:textAppearance="?android:attr/textAppearanceLarge"-->
-<!--                    android:text="Large Text"-->
-<!--                    android:id="@+id/tvTitle"-->
-<!--                    android:gravity="center"-->
-<!--                    android:textSize="25sp" />-->
-
-<!--                <View-->
-<!--                    android:id="@+id/view1"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="1dp"-->
-<!--                    android:background="@drawable/shape" />-->
-<!--                <RelativeLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:paddingLeft="15dp"-->
-<!--                    android:paddingTop="15dp"-->
-<!--                    android:paddingBottom="15dp"-->
-<!--                    android:paddingRight="15dp">-->
-
-<!--                    <TextView-->
-<!--                        android:id="@+id/tvCounter"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:textAppearance="?android:attr/textAppearanceSmall"-->
-<!--                        android:text="Small Text"-->
-<!--                        android:gravity="right"-->
-<!--                        android:textSize="25sp"-->
-<!--                        android:layout_alignBottom="@+id/new_Msg"-->
-<!--                        android:layout_alignParentRight="true"-->
-<!--                        android:layout_alignParentEnd="true" />-->
-
-<!--                    <ImageView-->
-<!--                        android:id="@+id/new_Msg"-->
-<!--                        android:layout_width="30dp"-->
-<!--                        android:layout_height="28dp"-->
-<!--                        android:src="@mipmap/new_msg"-->
-<!--                        android:layout_gravity="right"-->
-<!--                        android:visibility="gone" />-->
-
-<!--                </RelativeLayout>-->
-<!--            </LinearLayout>-->
-
-
-
-<!--        </FrameLayout>-->
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:layout_marginTop="4dp"
-            android:fontFamily="sans-serif-black"
-            android:text="TextView"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/newmsg"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="10dp"
-            android:text="TextView"
-            android:textAlignment="center"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.501"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/name" />
-        <TextView
-            android:id="@+id/tvCounter"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Small Text"
-            android:gravity="right"
-            android:textSize="25sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.501"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/newmsg" />
-    </LinearLayout>
+<!--        <TextView-->
+<!--            android:id="@+id/newmsg"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="4dp"-->
+<!--            android:layout_marginBottom="10dp"-->
+<!--            android:text="TextView"-->
+<!--            android:textAlignment="center"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintHorizontal_bias="0.501"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/name" />-->
+<!--        <TextView-->
+<!--            android:id="@+id/tvCounter"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Small Text"-->
+<!--            android:gravity="right"-->
+<!--            android:textSize="25sp"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintHorizontal_bias="0.501"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/newmsg" />-->
+<!--    </LinearLayout>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

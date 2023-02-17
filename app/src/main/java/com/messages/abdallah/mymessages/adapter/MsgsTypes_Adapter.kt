@@ -1,10 +1,12 @@
 package com.messages.abdallah.mymessages.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.messages.abdallah.mymessages.R
 import com.messages.abdallah.mymessages.databinding.MsgstypeslayoutBinding
 import com.messages.abdallah.mymessages.models.MsgsTypesModel
 
@@ -52,9 +54,19 @@ class MsgsTypes_Adapter : RecyclerView.Adapter<MsgsTypes_Adapter.MyViewHolder>()
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val current_msgsTypesModel = msgsTypesModel[position]
         holder.binding.apply {
-            name.text=current_msgsTypesModel.MsgTypes
-            newmsg.text = current_msgsTypesModel.new_msg.toString()
+            tvTitle.text=current_msgsTypesModel.MsgTypes
+            newMsga.setImageResource(R.drawable.new_msg)
+//            = current_msgsTypesModel.new_msg.toString()
+
+            if (current_msgsTypesModel.new_msg == 0){
+
+                newMsga.setVisibility(View.INVISIBLE)
+            }
+            else {
+                newMsga.setVisibility(View.VISIBLE)
+            }
             tvCounter.text = current_msgsTypesModel.counter.toString()
+
 
 
         }

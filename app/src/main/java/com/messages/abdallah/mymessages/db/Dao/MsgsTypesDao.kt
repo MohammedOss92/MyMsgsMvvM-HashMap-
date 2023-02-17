@@ -38,7 +38,7 @@ interface MsgsTypesDao {
             "   from msg_table e  \n" +
             "   GROUP BY ID_Type_id) e\n" +
             "ON e.ID_Type_id = c.id")
-    suspend fun getMsgsTypes_Dao():  List<MsgsTypesModel>
+    suspend fun getMsgsTypes_Dao():  List<MsgsTypeWithCount>
 
 
 
