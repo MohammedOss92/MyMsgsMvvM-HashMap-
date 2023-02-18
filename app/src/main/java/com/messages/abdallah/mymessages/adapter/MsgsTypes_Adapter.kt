@@ -12,7 +12,7 @@ import com.messages.abdallah.mymessages.models.MsgsTypesModel
 
 class MsgsTypes_Adapter : RecyclerView.Adapter<MsgsTypes_Adapter.MyViewHolder>() {
 
-//    var onItemClick: ((Int,String) -> Unit)? = null
+    //    var onItemClick: ((Int,String) -> Unit)? = null
     var onItemClick: ((Int) -> Unit)? = null
 
     inner class MyViewHolder(val binding : MsgstypeslayoutBinding) : RecyclerView.ViewHolder(binding.root){
@@ -47,33 +47,57 @@ class MsgsTypes_Adapter : RecyclerView.Adapter<MsgsTypes_Adapter.MyViewHolder>()
             differ.submitList(value)
         }
 
+
+    private val diffCallback2 = object : DiffUtil.ItemCallback<HashMap<String,Int>>(){
+        override fun areItemsTheSame(oldItem: HashMap<String,Int>, newItem: HashMap<String,Int>): Boolean {
+            return oldItem == newItem
+
+        }
+
+        override fun areContentsTheSame(oldItem: HashMap<String,Int>, newItem: HashMap<String,Int>): Boolean {
+            return newItem == oldItem
+        }
+
+    }
+
+    private val differ2 = AsyncListDiffer(this, diffCallback2)
+
+    var counter: List<HashMap<String,Int>>
+        get() = differ2.currentList
+        set(value) {
+            differ2.submitList(value)
+        }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         return MyViewHolder(MsgstypeslayoutBinding.inflate(LayoutInflater.from(parent.context),parent,false))
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val current_msgsTypesModel = msgsTypesModel[position]
+//        val current_counter = counter[position]
+
         holder.binding.apply {
-            tvTitle.text=current_msgsTypesModel.MsgTypes
-            newMsga.setImageResource(R.drawable.new_msg)
-//            = current_msgsTypesModel.new_msg.toString()
+//            tvTitle.text=current_msgsTypesModel.MsgTypes
+//            newMsga.setImageResource(R.drawable.new_msg)
+//            tvCounter.text = counter[0][current_msgsTypesModel.id.toString()].toString()
+//
+//            if (current_msgsTypesModel.new_msg == 0){
+//
+//                newMsga.setVisibility(View.INVISIBLE)
+//            }
+//            else {
+//                newMsga.setVisibility(View.VISIBLE)
+//            }
 
-            if (current_msgsTypesModel.new_msg == 0){
-
-                newMsga.setVisibility(View.INVISIBLE)
-            }
-            else {
-                newMsga.setVisibility(View.VISIBLE)
-            }
-            tvCounter.text = current_msgsTypesModel.counter.toString()
-
-
+            name.text=current_msgsTypesModel.MsgTypes
+            newmsg.text = current_msgsTypesModel.new_msg.toString()
+            sizess.text = counter[0][current_msgsTypesModel.id.toString()].toString()
 
         }
 
 
 
-        
+
     }
 
     override fun getItemCount(): Int {

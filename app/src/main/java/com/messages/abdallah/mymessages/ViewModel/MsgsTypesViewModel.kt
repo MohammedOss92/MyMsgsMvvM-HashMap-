@@ -1,6 +1,7 @@
 package com.messages.abdallah.mymessages.ViewModel
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
@@ -11,7 +12,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.messages.abdallah.mymessages.api.ApiService
-import com.messages.abdallah.mymessages.models.MsgsTypeWithCount
+import com.messages.abdallah.mymessages.models.MsgsModel
 import com.messages.abdallah.mymessages.models.MsgsTypesModel
 import com.messages.abdallah.mymessages.repository.MsgsRepo
 import com.messages.abdallah.mymessages.repository.MsgsTypesRepo
@@ -19,22 +20,25 @@ import com.messages.abdallah.mymessages.ui.MainActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.json.JSONObject
 
 class MsgsTypesViewModel constructor(
     private val msgsTypesRepo: MsgsTypesRepo,
     private val msgsRepo: MsgsRepo,
     val context: MainActivity
+
 ) : ViewModel() {
 
     private val retrofitService = ApiService.provideRetrofitInstance()
-//     msgsTypesRepo = MsgsTypesRepo(retrofitService)
 
-    private val _response = MutableLiveData<List<MsgsTypeWithCount>>()
-    val responseMsgsTypes: LiveData<List<MsgsTypeWithCount>>
+    //     msgsTypesRepo = MsgsTypesRepo(retrofitService)
+    val map: HashMap<String, Int> = HashMap()
+    private val _response = MutableLiveData<List<MsgsTypesModel>>()
+    val responseMsgsTypes: LiveData<List<MsgsTypesModel>>
         get() = _response
 
 
-    suspend fun getAllMsgsTypes(context: MainActivity): MutableLiveData<List<MsgsTypeWithCount>> {
+    suspend fun getAllMsgsTypes(context: MainActivity): MutableLiveData<List<MsgsTypesModel>> {
 
         msgsTypesRepo.getMsgsTypes_Ser().let { response ->
             Log.d("sww", "dfrr")
@@ -48,9 +52,10 @@ class MsgsTypesViewModel constructor(
                 //here get data from api so will insert it to local database
                 msgsTypesRepo.insertPosts(response.body()?.results)
                 for (i in response.body()?.results!!) {
-                    MsgsViewModel(msgsRepo).getAllMsgs(i.id)
+                    val list =  MsgsViewModel(msgsRepo).getAllMsgs(i.id)
+                    map[i.id.toString()]= list.value!!.size
                 }
-
+                this.saveMap(map,context)
                 context.hideprogressdialog()
 
             } else {
@@ -64,7 +69,7 @@ class MsgsTypesViewModel constructor(
         return _response
     }
 
-    fun getPostsFromRoom(context: MainActivity): MutableLiveData<List<MsgsTypeWithCount>> {
+    fun getPostsFromRoom(context: MainActivity): MutableLiveData<List<MsgsTypesModel>> {
         viewModelScope.launch {
             val response = msgsTypesRepo.getMsgsTypes_Dao()
             withContext(Dispatchers.Main) {
@@ -99,7 +104,7 @@ class MsgsTypesViewModel constructor(
                 //  context.hideprogressdialog()
                 getAllMsgsTypes(context)
             } else {
-                    context.hideprogressdialog()
+                context.hideprogressdialog()
 
                 Toast.makeText(
                     context,
@@ -126,6 +131,17 @@ class MsgsTypesViewModel constructor(
         return false
     }
 
-
+    private fun saveMap(inputMap: HashMap<String, Int>,context: MainActivity) {
+        val pSharedPref: SharedPreferences =
+            context.getSharedPreferences("MyVariables", Context.MODE_PRIVATE)
+        if (pSharedPref != null) {
+            val jsonObject = JSONObject(inputMap as Map<*, *>)
+            val jsonString = jsonObject.toString()
+            pSharedPref.edit()
+                .remove("My_map")
+                .putString("My_map", jsonString)
+                .apply()
+        }
+    }
 }
 

@@ -29,7 +29,7 @@ class LocaleSource(context: Context) {
         }
     }
 
-    suspend fun getMsgsTypes_Dao(): List<MsgsTypeWithCount> {
+    suspend fun getMsgsTypes_Dao(): List<MsgsTypesModel> {
         return TypesDao?.getMsgsTypes_Dao()!!
     }
 

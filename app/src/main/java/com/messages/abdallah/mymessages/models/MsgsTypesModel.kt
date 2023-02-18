@@ -23,7 +23,6 @@ data class MsgsTypesModel(
     @ColumnInfo(name = "new_msg")
     @SerializedName("new_msg")
     var new_msg: Int,
-
     var counter: Int
 
 
