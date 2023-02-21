@@ -16,8 +16,15 @@ interface MsgsDao {
 
 
 
-    @Query("Select * from msg_table where ID_Type_id =:ID_Type_id")
-    suspend fun getAllMsgsDao(ID_Type_id: Int): List<MsgsModel>
+//    @Query("Select * from msg_table where TypeDescription =:ID_Type_id")
+//    suspend fun getAllMsgsDa(ID_Type_id: Int): List<MsgsModel>
+
+    @Query(" select m.*,t.TypeDescription from msg_table m " +
+            " Left Join msg_types_table t on" +
+            " m.TypeDescription = t.TypeID " +
+            "where m.TypeDescription" +
+            "=:TypeDescription")
+    suspend fun getAllMsgsDa(TypeDescription: Int): List<MsgsModel>
 
 
 

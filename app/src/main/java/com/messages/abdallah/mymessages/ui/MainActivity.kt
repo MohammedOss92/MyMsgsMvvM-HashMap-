@@ -82,6 +82,7 @@ class MainActivity : AppCompatActivity() {
     fun showprogressdialog() {
 
         binding.progressBar.visibility = View.VISIBLE
+
       //  mprogressdaialog = Dialog(this)
       //  mprogressdaialog!!.setCancelable(false)
       //  mprogressdaialog!!.setContentView(R.layout.progress_dialog)

@@ -11,12 +11,12 @@ data class MsgsTypesModel(
     // // sweilem edit
 
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id")
+    @ColumnInfo(name = "TypeID")
     @SerializedName("id")
     @NonNull
     var id: Int = 0,
 
-    @ColumnInfo(name = "MsgTypes")
+    @ColumnInfo(name = "TypeDescription")
     @SerializedName("MsgTypes")
     var MsgTypes: String?,
 

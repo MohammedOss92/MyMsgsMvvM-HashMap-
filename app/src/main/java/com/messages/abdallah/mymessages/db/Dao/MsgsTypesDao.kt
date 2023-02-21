@@ -14,7 +14,7 @@ interface MsgsTypesDao {
     fun getPosts2():  List<MsgsTypesModel>
 
     // get last id to compare with server data
-    @Query("SELECT * FROM msg_types_table ORDER BY id DESC LIMIT 1")
+    @Query("SELECT * FROM msg_types_table ORDER BY TypeID DESC LIMIT 1")
     fun getLastId(): MsgsTypesModel
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)

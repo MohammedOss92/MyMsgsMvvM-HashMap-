@@ -8,15 +8,16 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "msg_table",
-    foreignKeys =[ForeignKey(entity = MsgsTypesModel::class, childColumns = ["ID_Type_id"], parentColumns = ["id"])])
+    foreignKeys =[ForeignKey(entity = MsgsTypesModel::class, childColumns = ["TypeDescription"], parentColumns = ["TypeID"])])
 data class MsgsModel(
 
     @PrimaryKey(autoGenerate = true)
     @SerializedName("id")
+    @ColumnInfo(name = "Msg_ID")
     @NonNull
     var id : Int = 0,
 
-    @ColumnInfo("MessageName")
+    @ColumnInfo("MsgDescription")
     @SerializedName("MessageName")
     var MessageName : String,
 
@@ -24,7 +25,7 @@ data class MsgsModel(
     @SerializedName("new_msgs")
     var new_msgs : Int,
 
-    @ColumnInfo("ID_Type_id", index = true)
+    @ColumnInfo("TypeDescription", index = true)
     @SerializedName("ID_Type_id")
-    var ID_Type_id : Int
+    var ID_Type_id : String
 )

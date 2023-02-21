@@ -44,7 +44,10 @@ class MsgsViewModel constructor(private val msgsRepo:MsgsRepo):ViewModel() {
 
     fun getMsgsFromRoom_by_id(ID_Type_id:Int,context: Context) :MutableLiveData<List<MsgsModel>>{
         viewModelScope.launch {
-            val response = msgsRepo.getMsgs_Dao(ID_Type_id)
+//            val response = msgsRepo.getMsgs_Dao(ID_Type_id)
+            val response = msgsRepo.getMsgs_Da(ID_Type_id)
+
+
             withContext(Dispatchers.Main) {
                 if (response.isEmpty()) {
                     Log.i("TestRoom", "getPostsFromRoom: will cal api")

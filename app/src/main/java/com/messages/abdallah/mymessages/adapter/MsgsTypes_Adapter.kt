@@ -77,21 +77,21 @@ class MsgsTypes_Adapter : RecyclerView.Adapter<MsgsTypes_Adapter.MyViewHolder>()
 //        val current_counter = counter[position]
 
         holder.binding.apply {
-//            tvTitle.text=current_msgsTypesModel.MsgTypes
-//            newMsga.setImageResource(R.drawable.new_msg)
-//            tvCounter.text = counter[0][current_msgsTypesModel.id.toString()].toString()
-//
-//            if (current_msgsTypesModel.new_msg == 0){
-//
-//                newMsga.setVisibility(View.INVISIBLE)
-//            }
-//            else {
-//                newMsga.setVisibility(View.VISIBLE)
-//            }
+            tvTitle.text=current_msgsTypesModel.MsgTypes
+            newMsg.setImageResource(R.drawable.new_msg)
+            tvCounter.text = counter[0][current_msgsTypesModel.id.toString()].toString()
 
-            name.text=current_msgsTypesModel.MsgTypes
-            newmsg.text = current_msgsTypesModel.new_msg.toString()
-            sizess.text = counter[0][current_msgsTypesModel.id.toString()].toString()
+            if (current_msgsTypesModel.new_msg == 0){
+
+                newMsg.setVisibility(View.INVISIBLE)
+            }
+            else {
+                newMsg.setVisibility(View.VISIBLE)
+            }
+
+//            name.text=current_msgsTypesModel.MsgTypes
+//            newmsg.text = current_msgsTypesModel.new_msg.toString()
+//            sizess.text = counter[0][current_msgsTypesModel.id.toString()].toString()
 
         }
 
